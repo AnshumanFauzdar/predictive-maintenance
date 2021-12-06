@@ -31,8 +31,7 @@ jobs:
 
       - name: Install platform
         run: |
-          arduino-cli config init
-          arduino-cli core update-index --additional-urls https://github.com/sonydevworld/spresense-arduino-compatible/releases/download/generic/package_spresense_index.json
+          arduino-cli config init --additional-urls https://github.com/sonydevworld/spresense-arduino-compatible/releases/download/generic/package_spresense_index.json
           arduino-cli core update-index
           arduino-cli core search spresense
           arduino-cli core install SPRESENSE:spresense
