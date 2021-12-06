@@ -1,16 +1,37 @@
 name: Sony
+
 on: [push, pull_request]
+
 jobs:
-  build:
-    name: Test compiling for sony spresense
-    runs-on: ubuntu-latest
+  test-matrix:
+
+    
+    strategy:
+      matrix:
+
+        arduino-platform: ["SPRESENSE:spresense"]
+
+        include:
+
+					- arduino-platform: "SPRESENSE:spresense"
+						fqbn: "SPRESENSE:spresense:spresense"
+
+
+    runs-on: windows-latest
+
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
 
-    - name: Compile all examples
-      uses: ArminJo/arduino-test-compile@v3
-      with:
-        arduino-board-fqbn: Spresense Boards:Spresense
-        platform-url: https://github.com/sonydevworld/spresense-arduino-compatible/releases/download/generic/package_spresense_index.json
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Arduino CLI
+        uses: arduino/setup-arduino-cli@v1
+
+      - name: Install platform
+        run: |
+					arduino-cli core update-index --additional-urls https://github.com/sonydevworld/spresense-arduino-compatible/releases/download/generic/package_spresense_index.json
+          arduino-cli core update-index
+          arduino-cli core install ${{ matrix.arduino-platform }}
+      - name: Compile Sketch
+        run: arduino-cli compile --fqbn ${{ matrix.fqbn }} ./firmware/testing/wifi/spresense
