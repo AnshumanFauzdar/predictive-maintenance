@@ -13,8 +13,8 @@ jobs:
 
         include:
 
-					- arduino-platform: "SPRESENSE:spresense"
-						fqbn: "SPRESENSE:spresense:spresense"
+		- arduino-platform: "SPRESENSE:spresense"
+		  fqbn: "SPRESENSE:spresense:spresense"
 
 
     runs-on: windows-latest
@@ -30,7 +30,7 @@ jobs:
 
       - name: Install platform
         run: |
-					arduino-cli core update-index --additional-urls https://github.com/sonydevworld/spresense-arduino-compatible/releases/download/generic/package_spresense_index.json
+          arduino-cli core update-index --additional-urls https://github.com/sonydevworld/spresense-arduino-compatible/releases/download/generic/package_spresense_index.json
           arduino-cli core update-index
           arduino-cli core install ${{ matrix.arduino-platform }}
       - name: Compile Sketch
