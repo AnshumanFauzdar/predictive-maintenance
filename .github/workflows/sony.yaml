@@ -14,4 +14,3 @@ jobs:
       with:
         arduino-board-fqbn: Spresense Boards:Spresense
         platform-url: https://github.com/sonydevworld/spresense-arduino-compatible/releases/download/generic/package_spresense_index.json
-	sketch-names: firmware/testing/wifi/spresense/spresense.ino
