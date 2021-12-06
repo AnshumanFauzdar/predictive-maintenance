@@ -13,8 +13,8 @@ jobs:
 
         include:
 
-		- arduino-platform: "SPRESENSE:spresense"
-		  fqbn: "SPRESENSE:spresense:spresense"
+	- arduino-platform: "SPRESENSE:spresense"
+	fqbn: "SPRESENSE:spresense:spresense"
 
 
     runs-on: windows-latest
