@@ -16,7 +16,13 @@ indicator: str = "=>"
 
 title = "Select COM port :"
 
-options = [port[0]+ " : " + name[0], port[1] + " : " + name[1], port[2] + " : " + name[2]]
+#options = [port[0]+ " : " + name[0]]#, port[1] + " : " + name[1], port[2] + " : " + name[2]]
+options = []
+#for ports in len(port):
+
+for i in range(0, len(port)):
+    options.append(port[i]+ " : " + name[i])
+
 
 option, index = pick(options, title, indicator)
 
