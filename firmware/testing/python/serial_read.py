@@ -1,3 +1,4 @@
+import sys
 import serial
 import time
 from pick import pick
@@ -18,6 +19,11 @@ title = "Select COM port :"
 
 #options = [port[0]+ " : " + name[0], port[1] + " : " + name[1], port[2] + " : " + name[2]]
 options = []
+
+# Exit with error code 1 if no ports found
+if len(port) <= 0:
+    print( "No device connected")
+    sys.exit(1)
 
 for i in range(0, len(port)):
     options.append(port[i]+ " : " + name[i])
