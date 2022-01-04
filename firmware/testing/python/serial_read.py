@@ -31,7 +31,7 @@ for i in range(0, len(port)):
 
 option, index = pick(options, title, indicator)
 
-ser = serial.Serial(option, 9600, timeout=1)
+ser = serial.Serial(port[index], 9600, timeout=1)
 time.sleep(1)
 
 for i in range(100):
