@@ -53,7 +53,7 @@ while(True):
         string = line.decode()
         # change "Pressure = " to any req word
         if "Pressure = " in string:
-            num = int(use_regex(string).group(0))
+            num = str(use_regex(string).group(0))
 
             # add custome condition here
             print(num)
