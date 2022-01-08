@@ -37,25 +37,23 @@ option, index = pick(options, title, indicator)
 ser = serial.Serial(port[index], 9600, timeout=1)
 time.sleep(1)
 
-
 # Print all serial port data
-def print_serial_data():
-    while(True):
-        line = ser.readline()
-        if line:
-            string = line.decode()
-            print(string)
-
-
-while(True):
+def serial_data():
     line = ser.readline()
     if line:
         string = line.decode()
-        # change "Pressure = " to any req word
-        if "Pressure = " in string:
+        return string
+
+def serial_data_findbystring(word: str):
+    line = ser.readline()
+    if line:
+        string = line.decode()
+        if word in string:
             num = float(use_regex(string).group(0))
+            return num
 
-            # add custome condition here
-            print(num)
-
-ser.close()
+if __name__ == "__main__":
+    # run python .\serial_read.py
+    while(True):
+        num = serial_data_findbystring("Pressure = ")
+        print(num)
