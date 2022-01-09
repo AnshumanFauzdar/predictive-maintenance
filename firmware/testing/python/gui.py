@@ -14,15 +14,15 @@ def value_update():
     text.value = value
     if (value and value > THRESHOLD):
         text.text_color = "#00ff00" # green
-        picture.value = "pass-min.png"
+        #picture.value = "pass-min.png"
     else:
         text.text_color = "#ff3333" # red
-        picture.value = "fail-min.png"
+        #picture.value = "fail-min.png"
 
 app = App("Predictive Maintenance", bg = "#121212") # #121212: black
 
 text = Text(app, text=value_update)
-picture = Picture(app)
+#picture = Picture(app)
 
 text.repeat(100, value_update)  # Schedule call to every "n"ms(1s = 1000ms)
 
