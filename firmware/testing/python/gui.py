@@ -19,7 +19,7 @@ def value_update():
         text.text_color = "#ff3333" # red
         picture.value = "fail-min.png"
 
-app = App("Swayatt Drishtigochar", bg = "#121212") # #121212: black
+app = App("Predictive Maintenance", bg = "#121212") # #121212: black
 
 text = Text(app, text=value_update)
 picture = Picture(app)
