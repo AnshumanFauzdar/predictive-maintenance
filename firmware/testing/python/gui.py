@@ -10,19 +10,25 @@ THRESHOLD = 23.00
 
 # Action you would like to perform
 def value_update():
-    value = serial_data_findbystring("Temperature = ")
+    value = serial_data_findbystring("Pressure = ")
     text.value = value
+    print(value)
     if (value and value > THRESHOLD):
         text.text_color = "#00ff00" # green
-        picture.value = "pass-min.png"
-    if (value and value < THRESHOLD):
+        app.bg = "#009900"
+        #picture.value = "pass-min.png"
+    elif (value and value < THRESHOLD):
         text.text_color = "#ff3333" # red
-        picture.value = "fail-min.png"
+        app.bg = "#990000"
+        #picture.value = "fail-min.png"
+    else: # no value
+        text.text_color = "#121212"
+        app.bg = "#121212"        
 
-app = App("Predictive Maintenance", bg = "#121212") # #121212: black
+app = App("Swayatt Drishtigochar", bg = "#121212") # #121212: black
 
 text = Text(app, text=value_update)
-picture = Picture(app)
+#picture = Picture(app)
 
 text.repeat(100, value_update)  # Schedule call to every "n"ms(1s = 1000ms)
 
