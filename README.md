@@ -1,3 +1,5 @@
+[![Video Demonstration](https://user-images.githubusercontent.com/40523329/151546529-868d12b0-08c2-4249-9135-29f47f4933a7.png)](https://youtu.be/retoF6pWXOE)
+
 # Samvedan 2021 - TEAM MECHATRONICS
 
 Documentation hosted on [sony.anshumanfauzdar.me](https://sony.anshumanfauzdar.me)
