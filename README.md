@@ -48,6 +48,31 @@ GitHub upload instructions:
 - Assign the task to the appropriate reviewer.
 - Once tested and approved from all team members PR will be merged.
 
+## Software Architecture
+```mermaid
+  graph TD;
+    A[Start Software] --> B{{Check Internet Connection}};
+    B --> C(connected to internet);
+    B --> E(Not connected to internet);
+    C --> D(update to latest dataset and firmware);
+    E --> F(use local dataset and firmware edgeML);
+    D --> G;
+    F --> G{{Data acquisition from camera and microphone/vibration/temperature sensors}};
+    G --> H(Image/video data in realtime)
+    G --> I(Microphone/vibration/temperature sensor real time data)
+    H --> J(Monitoring with ML and AI on Edge)
+    I --> K(Monitoring with noise filtering and AI/ML on the edge)
+    J --> L;
+    K --> L{{Leakage, excess, noise/vibration, wrong part handling, heat etc. detected}}
+    L -->|YES| M{{Notify nearest production line worker and visual/audio notifications}}
+    M -->|Yes| N[\Action Taken\]
+    M -->|No| O[\No action taken after certain time\]
+    N --> P;
+    O --> P{{MACHINE AUTO TURN OFF and notify all}}
+    P --> Q[\Acquire data and improve detection dataset\]
+    Q --> R[Repeat Process]
+```
+
 ## Road Map
 - [ ]  [⚠️ VERY IMPORTANT ⚠️] **Burning Bootloader**
 - [ ]  [⚠️ VERY IMPORTANT ⚠️] Setting up camera
