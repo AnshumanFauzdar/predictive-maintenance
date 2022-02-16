@@ -67,10 +67,10 @@ GitHub upload instructions:
     L -->|YES| M{{Notify nearest production line worker and visual/audio notifications}}
     M -->|Yes| N[\Action Taken\]
     M -->|No| O[\No action taken after certain time\]
-    N --> P;
     O --> P{{MACHINE AUTO TURN OFF and notify all}}
     P --> Q[\Acquire data and improve detection dataset\]
     Q --> R[Repeat Process]
+    N --> R
 ```
 
 ## Road Map
