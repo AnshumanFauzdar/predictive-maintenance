@@ -3,14 +3,14 @@
 # change value of THRESHOLD to change pass-fail criteria (input a decimal value)
 # change string "Pressure = " any other requirement(s)
 
-from serial_read import serial_data_findbystring
+from serial_read_edge_impulse import serial_data_findbystring
 from guizero import App, Text, Picture
 
-THRESHOLD = 23.00
+THRESHOLD = 0.70
 
 # Action you would like to perform
 def value_update():
-    value = serial_data_findbystring("Temperature = ")
+    value = serial_data_findbystring()
     text.value = value
     print(value)
     if (value and app.bg != "#009900" and value >= THRESHOLD):
@@ -26,12 +26,12 @@ def value_update():
     if(not value): # no value
         text.text_color = "#121212"
         picture.hide()
-        app.bg = "#121212"      
+        app.bg = "#990000" #"#121212"      
 
 app = App("Predictive Maintenance", bg = "#121212") # #121212: black
 
 text = Text(app, text=value_update)
-#picture = Picture(app)
+picture = Picture(app)
 
 text.repeat(100, value_update)  # Schedule call to every "n"ms(1s = 1000ms)
 
