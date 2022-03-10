@@ -1,4 +1,4 @@
-[![Video Demonstration](https://user-images.githubusercontent.com/40523329/151546529-868d12b0-08c2-4249-9135-29f47f4933a7.png)](https://youtu.be/retoF6pWXOE)
+[![Video Demonstration](https://user-images.githubusercontent.com/40523329/151546529-868d12b0-08c2-4249-9135-29f47f4933a7.png)](https://youtu.be/ZZI74CT7vGE)
 
 # Samvedan 2021 - TEAM MECHATRONICS
 
