@@ -1,41 +1,27 @@
-name: Sony
+name: nuttx
 
-on: [push, pull_request]
+on:
+  push:
+      branches: [ main ]
+  pull_request:
+      branches: [ main ]
 
 jobs:
-  test-matrix:
-
-    
-    strategy:
-      matrix:
-
-        arduino-platform: ["SPRESENSE:spresense"]
-
-        include:
-
-          - arduino-platform: "SPRESENSE:spresense"
-            fqbn: "SPRESENSE:spresense:spresense"
-
-
-    runs-on: windows-latest
-    if: "contains(github.event.head_commit.message, 'test')"
-
-
+  ubuntu-build:
+    runs-on: ubuntu-latest
     steps:
-
-      - name: Checkout
-        uses: actions/checkout@v2
-
-
-      - name: Setup Arduino CLI
-        uses: arduino/setup-arduino-cli@v1
-
-      - name: Install platform
-        run: |
-          arduino-cli config init --additional-urls https://github.com/sonydevworld/spresense-arduino-compatible/releases/download/generic/package_spresense_index.json
-          arduino-cli core update-index
-          arduino-cli core search spresense
-          arduino-cli core install SPRESENSE:spresense
-          arduino-cli lib install ArduinoJson@5.13.5
-      - name: Compile Sketch
-        run: arduino-cli compile --fqbn SPRESENSE:spresense:spresense ./firmware/testing/wifi/spresense
+    - uses: actions/checkout@v2
+    - name: install MAKE
+      run: sudo apt-get -y install make
+    - name: install dependencies
+      run: sudo apt-get install git gperf libncurses5-dev flex bison gcc-arm-none-eabi
+    - name: install kconfig-frontends
+      run: sudo apt-get install kconfig-frontends
+    - name: git clone SDK
+      run: git clone --recursive https://github.com/sonydevworld/spresense.git
+    - name: change directory to sdk folder
+      run: cd spresense/sdk
+    - name: set configuration
+      run: tools/config.py examples/hello
+    - name: compile SDK
+      run: make
