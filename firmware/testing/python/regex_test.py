@@ -62,13 +62,16 @@ def my_function():
 
 action = run_once(my_function)
 
+# Enter matching string
+val = input("Enter value : ")
+
 while(True):
     line = ser.readline()
     action()
     if line:
         string = line.decode()
-        # change "none: 	" to any matching string
-        if "none: 	" in string:
+        
+        if val in string:
             num = float(use_regex(string).group(0))
             # add custom condition here
             print(num)
