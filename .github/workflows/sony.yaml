@@ -9,6 +9,7 @@ on:
 jobs:
   ubuntu-build:
     runs-on: ubuntu-latest
+    path: dist/
     steps:
     - uses: actions/checkout@v2
     - name: install updates
