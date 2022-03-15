@@ -24,8 +24,8 @@ jobs:
     - name: git clone SDK
       run: git clone --recursive https://github.com/sonydevworld/spresense.git
     - name: change directory to sdk folder
-      run: cd spresense/sdk
+      run: cd ./spresense/sdk
     - name: set configuration
-      run: tools/config.py examples/hello
+      run: ./tools/config.py examples/hello
     - name: compile SDK
-      run: make
+      run: ./make
