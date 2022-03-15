@@ -9,9 +9,10 @@ on:
 jobs:
   ubuntu-build:
     runs-on: ubuntu-latest
-    path: dist/
     steps:
     - uses: actions/checkout@v2
+      with:
+        path: dist/
     - name: install updates
       run: sudo apt-get -y update
     - name: install MAKE
