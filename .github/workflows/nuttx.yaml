@@ -1,0 +1,27 @@
+name: nuttx
+
+on:
+  push:
+      branches: [ main ]
+  pull_request:
+      branches: [ main ]
+
+jobs:
+  build-and-test:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - name: install MAKE
+      run: sudo apt-get -y install make
+      - name: install dependencies
+      run: sudo apt-get install git gperf libncurses5-dev flex bison gcc-arm-none-eabi
+      - name: install kconfig-frontends
+      run: sudo apt-get install kconfig-frontends
+      - name: git clone SDK
+      run: git clone --recursive https://github.com/sonydevworld/spresense.git
+      - name: change directory to sdk folder
+      run: cd spresense/sdk
+      - name: set configuration
+      run: tools/config.py examples/hello
+      - name: compile SDK
+      run: make
