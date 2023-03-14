@@ -1,38 +1,24 @@
-# run with python .\gui.py
-# install: https://lawsie.github.io/guizero/
-# change value of THRESHOLD to change pass-fail criteria (input a decimal value)
-# change string "Pressure = " any other requirement(s)
+import tkinter as tk
+from serial_read import get_serial_data
 
-from serial_read_edge_impulse import serial_data_findbystring
-from guizero import App, Text, Picture
-
-THRESHOLD = 0.70
-
-# Action you would like to perform
-def value_update():
-    value = serial_data_findbystring()
-    text.value = value
+def update_color():
+    value = float(get_serial_data())
     print(value)
-    if (value and app.bg != "#009900" and value >= THRESHOLD):
-        text.text_color = "#00ff00"  # green
-        app.bg = "#009900"
-        picture.show()
-        picture.value = "pass-min.png"
-    elif (value and app.bg != "#990000" and value < THRESHOLD):
-        text.text_color = "#ff3333"  # red
-        app.bg = "#990000"
-        picture.show()
-        picture.value = "fail-min.png"
-    if(not value): # no value
-        text.text_color = "#121212"
-        picture.hide()
-        app.bg = "#990000" #"#121212"      
+    if value < 0.7:
+        canvas.config(bg="green")
+    elif value > 0.7:
+        canvas.config(bg="red")
+    else:
+        canvas.config(bg="black")
+    root.after(1000, update_color)
 
-app = App("Predictive Maintenance", bg = "#121212") # #121212: black
+root = tk.Tk()
+root.title("Serial Data Monitor")
 
-text = Text(app, text=value_update)
-picture = Picture(app)
+# Create canvas to show color
+canvas = tk.Canvas(root, width=1920, height=1080)
+canvas.pack()
 
-text.repeat(100, value_update)  # Schedule call to every "n"ms(1s = 1000ms)
-
-app.display()
+# Update color periodically based on serial data
+root.after(1000, update_color)
+root.mainloop()
