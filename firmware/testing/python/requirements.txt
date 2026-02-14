@@ -4,7 +4,7 @@ isort==5.10.1
 lazy-object-proxy==1.7.1
 mccabe==0.6.1
 pick==1.2.0
-Pillow==10.3.0
+Pillow==12.1.1
 platformdirs==2.5.1
 pylint==2.12.2
 pyserial==3.5
