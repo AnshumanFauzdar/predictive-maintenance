@@ -6,7 +6,7 @@ mccabe==0.6.1
 pick==1.2.0
 Pillow==13.0.0
 platformdirs==2.5.1
-pylint==2.12.2
+pylint==4.0.9
 pyserial==3.5
 toml==0.10.2
 typing-extensions==4.1.1
